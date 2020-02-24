@@ -40,4 +40,17 @@ def reduceMaps(row: Seq[Map[String, String]]): Map[String, String] = {
     row.flatten.groupBy(_._1).map(x => (x._1, x._2.map(_._2.toInt).sum.toString))
 }
 
+/* reuturn a string of actions sorted in ascending order of value of map
+def actionstring(map):
+                actionlist = []
+                for key in sorted(map, key=map.get, reverse=False):
+                    actionlist.append(key)
+                s = "|"
+                actions = s.join(actionlist)
+                return (actions)
+*/
+def reduceMapConcatString(row: Map[String, String], c: String): String = {
+    val s = row.toSeq.sortWith(_._2<=_._2).map(_._1)
+    s.mkString(c)
+}
 }
